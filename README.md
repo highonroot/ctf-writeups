@@ -12,6 +12,7 @@ This is not a collection of tricks, but a progression focused on:
 ## Linux PrivEsc
 
 - [00 - Overview](linux-privesc/00-overview.md)
+- [01 - Filesystem](linux-privesc/01-filesystem.md)
 
 
 ## Approach
