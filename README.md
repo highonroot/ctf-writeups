@@ -14,6 +14,8 @@ This is not a collection of tricks, but a progression focused on:
 - [00 - Overview](linux-privesc/00-overview.md)
 - [01 - Filesystem](linux-privesc/01-filesystem.md)
 - [02 - Permissions](linux-privesc/02-permissions.md)
+- [03 - Users and Groups](linux-privesc/03-users-and-groups.md)
+
 
 
 ## Approach
