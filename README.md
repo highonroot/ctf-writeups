@@ -17,6 +17,7 @@ This is not a collection of tricks, but a progression focused on:
 - [03 - Users and Groups](linux-privesc/03-users-and-groups.md)
 - [04 - Sudo](linux-privesc/04-sudo.md)
 - [05 - Credential Exposure](linux-privesc/05-credential-exposure.md)
+- [06 - Processes & Execution](linux-privesc/06-processes-and-execution.md)
 
 
 
