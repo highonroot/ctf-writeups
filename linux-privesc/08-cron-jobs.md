@@ -45,7 +45,7 @@ crontab -l     # List cron jobs
   ```
   Attacker replaces existing script or plants new one.
 
-- **Commands used without full path** : Scripts using commands relatively instead of using full path — directly connects to [PATH Hijacking](linux-privesc/07-path-hijacking.md) we discussed in previous writeup.
+- **Commands used without full path** : Scripts using commands relatively instead of using full path — directly connects to [PATH Hijacking](07-path-hijacking.md) we discussed in previous writeup.
   ```bash
   # Inside backup.sh
   tar -czf backup.tar.gz /home    # relative — vulnerable to PATH hijacking
