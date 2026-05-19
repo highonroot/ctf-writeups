@@ -20,6 +20,7 @@ This is not a collection of tricks, but a progression focused on:
 - [06 - Processes & Execution](linux-privesc/06-processes-and-execution.md)
 - [07 - PATH Hijacking](linux-privesc/07-path-hijacking.md)
 - [08 - Cron Jobs](linux-privesc/08-cron-jobs.md)
+- [09 - SUID SGID](linux-privesc/09-suid-sgid.md)
 
 
 ## Approach
