@@ -22,6 +22,7 @@ This is not a collection of tricks, but a progression focused on:
 - [08 - Cron Jobs](linux-privesc/08-cron-jobs.md)
 - [09 - SUID SGID](linux-privesc/09-suid-sgid.md)
 - [10 - Capabilities](linux-privesc/10-capabilities.md)
+- [11 - Enumeration](linux-privesc/11-enumeration.md)
 
 
 ## Approach
