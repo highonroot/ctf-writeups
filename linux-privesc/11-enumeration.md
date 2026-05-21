@@ -1,12 +1,9 @@
-# Enumeration
-
 ## What Enumeration Is
 
 Enumeration is the systematic process of gathering information on an unknown machine.
 
 It's about identifying and framing vulnerabilities and misconfigurations only — not exploiting them. Exploitation comes after.
 
----
 
 ## The Methodology
 
@@ -19,13 +16,11 @@ PrivEsc follows a defined sequence:
 
 This writeup covers the first three steps — landing on a system, enumerating throughout the machine, and finding what's misconfigured.
 
----
 
 ## Manual Enumeration Checklist
 
 The main section of enumeration. Ordered by priority — what you check first matters.
 
----
 
 ### 1. Identity
 
@@ -42,9 +37,8 @@ groups    # shows all groups current user belongs to
 - Is your UID something other than 1000+? — unexpected UIDs are suspicious
 - Are you already root (UID 0)? — escalation already complete
 
-→ [Users and Groups]()
+→ [Users and Groups](03-users-and-groups.md)
 
----
 
 ### 2. sudo Permissions
 
@@ -60,9 +54,8 @@ sudo -l    # shows sudo settings and permissions for current user
 - Does it have `ALL`? — full sudo access, immediate escalation
 - Does `env_keep` preserve `LD_PRELOAD` or `PATH`? — environment based escalation possible
 
-→ [Sudo]()
+→ [Sudo](04-sudo.md)
 
----
 
 ### 3. SUID/SGID Binaries
 
@@ -78,9 +71,8 @@ find / -perm -g=s -type f 2>/dev/null    # binaries with SGID set
 - Any SUID binary that is world-writable? — can rewrite the binary itself
 - Any custom or non-standard binary with SUID? — standard binaries are expected, custom ones are suspicious
 
-→ [SUID SGID]()
+→ [SUID SGID](09-suid-sgid.md)
 
----
 
 ### 4. Capabilities
 
@@ -95,9 +87,8 @@ getcap -r / 2>/dev/null    # list all files with capabilities set
 - `cap_dac_override` on an editor like `vim`? — can read any file including `/etc/shadow`
 - `cap_sys_admin` on anything? — nearly equivalent to full root access
 
-→ [Capabilities]()
+→ [Capabilities](10-capabilities.md)
 
----
 
 ### 5. Cron Jobs
 
@@ -115,9 +106,8 @@ ls -la /var/spool/cron    # cron spool directory
 - Cron job using relative commands instead of absolute paths? — PATH hijacking possible
 - For each cron entry ask — what does it run? who owns it? what permissions does it have? does it use relative commands?
 
-→ [Cron Jobs]()
+→ [Cron Jobs](08-cron-jobs.md)
 
----
 
 ### 6. Writable Directories and Files
 
@@ -129,14 +119,12 @@ find / -writable -type f 2>/dev/null    # all writable files
 ```
 
 **What to look for** —
-- Any writable directory in PATH? — plant a fake binary, root executes yours instead
 - Any writable directory containing root-executed scripts? — `/etc/cron.d`, `/opt/app/scripts`
-- Any sensitive writable file? — `/etc/passwd`, `/etc/sudoers` writable means direct escalation
-- Any root-owned binary using relative commands that is writable? — redirect execution via PATH
+- Any sensitive writable file? — `/etc/passwd` writable means direct escalation
+- Any world-writable directory used by privileged processes?
 
-→ [PATH Hijacking]()
+→ [Filesystem](01-filesystem.md)
 
----
 
 ### 7. PATH Check
 
@@ -151,9 +139,8 @@ find / -writable -type d 2>/dev/null    # cross reference with writable director
 - Any writable directory listed in `PATH`? — plant a binary with the same name as a legitimate command
 - Can you prepend a writable directory before the real one? — command resolution follows order, first match wins
 
-→ [PATH Hijacking]()
+→ [PATH Hijacking](07-path-hijacking.md)
 
----
 
 ### 8. Credential Exposure
 
@@ -173,9 +160,8 @@ cat ~/.ssh/id_rsa                     # private SSH key — if readable, attacke
 - Credentials stored as plain text? — config files, `.env` files, scripts with hardcoded DB passwords or API keys
 - Private SSH key without a passphrase? — direct authentication without a password
 
-→ [Credential Exposure]()
+→ [Credential Exposure](05-credential-exposure.md)
 
----
 
 ### 9. Users, Groups & Sensitive Files
 
@@ -194,9 +180,8 @@ cat /etc/group     # list all groups and their members
 - Any user with UID 0 other than root? — duplicate root account, immediate escalation
 - Any home directory readable? — may contain credentials, keys, or history files
 
-→ [Users and Groups]()
+→ [Users and Groups](03-users-and-groups.md)
 
----
 
 ### 10. Network and Processes
 
@@ -214,7 +199,8 @@ cat /etc/hosts        # internal hostnames and IPs
 - Any service listening only on `127.0.0.1`? — internal services often have weaker auth assuming they're unreachable from outside. From inside the machine, they're reachable.
 - Cross reference listening ports with running processes — identify what's running internally as root
 
----
+→ [Processes and Execution](06-processes-and-execution.md)
+
 
 ## Automated Tools
 
@@ -228,7 +214,6 @@ Run these only after completing manual enumeration — understanding what they f
 
 > **Note:** Automated tools are faster but noisy. Manual enumeration first builds the instinct to know what matters in the output.
 
----
 
 ## What Comes Next
 
