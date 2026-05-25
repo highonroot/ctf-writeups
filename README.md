@@ -70,6 +70,13 @@ The goal was to understand Linux well enough that misconfigured trust becomes vi
 
 ---
 
+## Related Project
+
+- [PrivCheck](https://github.com/highonroot/privcheck) — Lightweight Linux privilege escalation auditing script built from the enumeration methodology covered in these writeups.
+
+---
+
+
 ## Coming Soon
 
 **TryHackMe** — practical room writeups after the conceptual foundation is complete
